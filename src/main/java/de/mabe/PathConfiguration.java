@@ -1,12 +1,18 @@
 package de.mabe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PathConfiguration {
     List sourcePathes;
-    List destinationPath;
+    String destinationPath;
 
     public PathConfiguration() {
-        // TODO Auto-generated constructor stub
+        sourcePathes = new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        return "Sources " + sourcePathes + " destination: " + destinationPath;
     }
 }
