@@ -6,3 +6,8 @@ apply plugin: 'war'
 defaultTasks 'build'
 group = "de.mabe"
 
+// define source sets
+sourceSets.main.java.srcDirs      'src/main/java'
+sourceSets.main.resources.srcDirs 'src/main/resources'
+sourceSets.test.java.srcDir       'src/test/java'
+sourceSets.test.resources.srcDir  'src/test/resources'
