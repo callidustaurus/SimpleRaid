@@ -14,14 +14,12 @@ public class SymLinkCreator implements Executor {
 
         for (String sourcePath : config.sourcePathes) {
             File file = new File(sourcePath);
-            System.out.println("---  " + sourcePath);
             createSymbolicLinks(sourcePath, config.destinationPath, file.list());
         }
 
     }
 
     private void delete(File file) {
-        System.out.println("Deleting " + file.getPath());
         if (file.isDirectory()) {
             for (File innerFile : file.listFiles()) {
                 delete(innerFile);
