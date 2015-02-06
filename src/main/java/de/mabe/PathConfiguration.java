@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PathConfiguration {
-    List sourcePathes;
+    List<String> sourcePathes;
     String destinationPath;
 
     public PathConfiguration() {
