@@ -15,4 +15,18 @@ public class PathConfiguration {
     public String toString() {
         return "Sources " + sourcePathes + " destination: " + destinationPath;
     }
+
+    public void assertConfigIsComplete() {
+        String errorMessage = "";
+        if (sourcePathes.isEmpty()) {
+            errorMessage += "There are no sources defined. ";
+        }
+        if (destinationPath == null || destinationPath.isEmpty()) {
+            errorMessage += "There is no destinations definded.";
+        }
+
+        if (!errorMessage.isEmpty()) {
+            throw new RuntimeException(errorMessage);
+        }
+    }
 }

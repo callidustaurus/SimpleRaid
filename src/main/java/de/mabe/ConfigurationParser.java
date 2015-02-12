@@ -28,7 +28,7 @@ public class ConfigurationParser {
         while ((line = readLine(reader)) != null) {
             handleLine(line.trim());
         }
-
+        pathConfig.assertConfigIsComplete();
         return pathConfig;
     }
 
