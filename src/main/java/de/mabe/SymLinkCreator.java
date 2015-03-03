@@ -3,8 +3,13 @@ package de.mabe;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SymLinkCreator implements Executor {
+
+    private List<File> oldFiles = new ArrayList<File>();
+    private List<File> newFiles = new ArrayList<File>();
 
     @Override
     public void execute(PathConfiguration config) {
@@ -16,7 +21,27 @@ public class SymLinkCreator implements Executor {
             File file = new File(sourcePath);
             createSymbolicLinks(sourcePath, config.destinationPath, file.list());
         }
+        printUpdatedFiles();
+    }
 
+    private void printUpdatedFiles() {
+        List<File> deletedFiles = new ArrayList<File>();
+        List<File> createdFiles = new ArrayList<File>();
+
+        for (File file : oldFiles) {
+            if (!newFiles.contains(file)) {
+                deletedFiles.add(file);
+            }
+        }
+
+        for (File file : newFiles) {
+            if (!oldFiles.contains(file)) {
+                createdFiles.add(file);
+            }
+        }
+
+        System.out.println("Deleted files: " + deletedFiles);
+        System.out.println("New files: " + createdFiles);
     }
 
     private void delete(File file) {
@@ -26,6 +51,7 @@ public class SymLinkCreator implements Executor {
             }
             file.delete();
         } else {
+            oldFiles.add(file);
             file.delete();
         }
     }
@@ -47,7 +73,9 @@ public class SymLinkCreator implements Executor {
             // if file is file, create a symbolicLink to in in DestinationPath
             else {
                 try {
-                    Files.createSymbolicLink(new File(destPath + "/" + fileOrDirectory).toPath(), file.toPath());
+                    File fileForSymbolicLink = new File(destPath + "/" + fileOrDirectory);
+                    newFiles.add(fileForSymbolicLink);
+                    Files.createSymbolicLink(fileForSymbolicLink.toPath(), file.toPath());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
