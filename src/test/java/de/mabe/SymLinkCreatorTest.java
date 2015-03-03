@@ -6,16 +6,14 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 public class SymLinkCreatorTest {
     private final String testFolder = "/tmp/testFolder";
 
-    @Before
-    @After
+    // @Before
+    // @After
     public void cleanUp() {
         delete(new File(testFolder));
     }

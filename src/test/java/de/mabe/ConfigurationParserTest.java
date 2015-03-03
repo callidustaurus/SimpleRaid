@@ -1,9 +1,6 @@
 package de.mabe;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 
 import org.junit.Test;
 
@@ -16,16 +13,6 @@ public class ConfigurationParserTest {
 
     private void assertSourceContent(String sourceContent) throws Exception {
         File file = new File("tmp/testFile");
-        Outputstream os = new OutputStream() {
-
-            @Override
-            public void write(int b) throws IOException {
-                // TODO Auto-generated method stub
-
-            }
-        };
-        OutputStreamWriter isOutputStream = OutputStreamWriter();
-
     }
 
 }
